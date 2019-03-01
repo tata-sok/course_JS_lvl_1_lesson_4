@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Game</title>
+</head>
+<body>
+	<script>
+		var QUESTIONS = [
+			{
+				number : 1,
+				text : 'Какая столица США?',
+				answers : ['Москва', 'Лондон', 'Вашингтон', 'Изумрудный город'],
+				correct : 3
+			},
+			{
+				number : 2,
+				text : 'Какой самый большой океан ',
+				answers : ['Пятый', 'Атлантический', 'Тихий', 'Северно-ледовитый'],
+				correct : 3
+			},
+			{
+				number : 3,
+				text : 'Что выкрал Прометей у богов?',
+				answers : ['Огонь', 'Афродита', 'Деньги', 'Вино'],
+				correct : 1
+			},
+			{
+				number : 4,
+				text : 'В какой стране самое большое население в мире?',
+				answers : ['Россия', 'Эфиопия', 'США', 'Китай'],
+				correct : 4
+			},
+			{
+				number : 5,
+				text : 'Какая самая высокая вершина планеты?',
+				answers : ['Монблан', 'Килиманджаро', 'Эльбрус', 'Джомолунгма'],
+				correct : 4
+			}
+		];
+
+		
+
+		var game = function (mas) {
+			//console.log(mas);
+
+			let play = true;
+			let round = 0;
+			let correctAnswer = 0;
+
+			while (/*play === true &&*/ round < mas.length) {
+				//round++;
+				//console.log(round);
+
+				let question = generateQuestion (mas, round);
+				let answer = prompt (question.questionText);
+				play = check (answer, round);
+				if (play === true) {
+					correctAnswer++;
+				}
+				round++;
+			}
+			alert ('Количество правильных ответов: ' + correctAnswer);
+		};
+
+		var generateQuestion = function (mas, round) {
+			let answers = '';
+
+			for (let i = 0; i < 4; i++) {
+				answers = answers + (i + 1) + ' - ' + mas[round].answers[i] + '\n';
+			}
+
+			let text = mas[round].text + '\n'; 
+
+			let correctAnswer = mas[round].correct;
+
+
+			return {
+				questionText: text + answers + 'Введите правильный ответ',
+				rightAnswer: correctAnswer
+			}	
+		};
+
+		var check = function (answer, round) {
+			
+			if (answer == QUESTIONS[round].correct) {
+				alert ('OK');
+				return true;
+			} else {
+				alert ('YOU LOSE');
+				return false;
+			}
+		};
+
+		game (QUESTIONS);
+	</script>
+</body>
+</html>
