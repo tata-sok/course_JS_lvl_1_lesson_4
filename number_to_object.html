@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Number_to_Object</title>
+</head>
+<body>
+	<script>
+		var num = +prompt('Введите число в диапазоне от 0 до 999');
+
+		var numToObject = function(num) {
+			let obj = {};
+			if (num < 10) {
+			    obj.units = num;
+				obj.tens = 0;
+				obj.hundreds = 0;				
+			} else if (num < 100) {
+				obj.units = Math.floor(num % 10);
+				obj.tens = Math.floor(num /10 % 10);
+				obj.hundreds = 0;				
+			} else if (num < 1000) {
+				obj.units = Math.floor(num % 10);
+				obj.tens = Math.floor(num / 10 % 10);
+				obj.hundreds = Math.floor(num / 100 % 10);				
+			} else if (num >= 1000) {
+				obj = {};
+				console.log('Введеное число превышает 999.');
+				
+			}
+			console.log(obj);
+		}
+
+			
+
+		numToObject(num);
+
+
+	</script>
+</body>
+</html>
